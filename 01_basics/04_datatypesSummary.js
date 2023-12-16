@@ -41,3 +41,32 @@ console.log(typeof greet); // it returns function (objecr function)
 console.log(typeof myObj); // it returns object
 console.log(typeof heros); // it returns object
 console.log(typeof null); // it returns object
+
+
+// Stack and Heap in Javascript
+
+// All primitve datatypes are stored data stack memory Its just give the copy of that variable
+// All Non primitive datatypes are stored heap memory It provide the reference or address of that variable
+
+let num = 12;
+let temp = num;
+
+// But if I change on the temp varibale its won't affect on the num because temp is a copy of num
+temp = 34;
+
+console.log("num = ",num,"temp = ",temp);
+console.log("After Update the value:");
+console.log("num = ",num,"temp = ",temp);
+
+// Now come to the example of the heap memory means it is the non primitive datatypes
+// Its provide the address or reference of the varibale
+let myDetails={
+    name:"Souvick Pramanik",
+    company:"Keross R&D",
+    empId:"K2303117"
+}
+let copyMyDetails=myDetails;
+console.log(myDetails);
+copyMyDetails.empId="k2405443"; // It updates the both of the object main and copy
+console.log("After update the obj:");
+console.log(myDetails,copyMyDetails);
