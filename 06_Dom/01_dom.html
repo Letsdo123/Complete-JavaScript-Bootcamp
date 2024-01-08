@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Element In Dom || Using JS</title>
+</head>
+
+<body>
+    <div class="week">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thrusday</div>
+    </div>
+</body>
+<script>
+    let parent = document.querySelector('.week');
+    // console.log(parent);
+    // console.log(parent.innerHTML);
+
+    // It returns all the children
+    // And that is a HTMLCollection
+    console.log(parent.children);
+    let allChild = parent.children;
+    for (let index = 0; index < allChild.length; index++) {
+        const element = allChild[index];
+        // console.log(element.innerText);
+        // console.log(element.innerHTML);
+
+        // Make it beautiful throug js
+        element.style.backgroundColor = 'green'
+        element.style.margin = '0.5rem'
+        element.style.padding = '0.5rem'
+        element.style.borderRadius = '0.625rem'
+        element.style.color = 'white'
+    }
+
+    // selecting the first and last child
+    console.log(parent.firstElementChild.innerText);
+    console.log(parent.lastElementChild.innerText);
+    console.log(parent.node);
+
+    console.log(parent.parentElement);
+
+    // create new elements and append it to a div
+    let element = document.createElement('div');
+    // console.log(element);
+    element.setAttribute('title', 'Friday');
+    let newElementStyle = {
+        backgroundColor: 'green',
+        padding: "0.5rem",
+        margin: "0.5rem",
+        color: "white",
+        borderRadius: "0.625rem",
+    }
+    // set multiple attributes together
+    Object.assign(element, {
+        'className': "day",
+        'id': "lastDay",
+        'innerText': "Friday",
+    });
+    Object.assign(element.style, newElementStyle);
+    console.log(element);
+
+    parent.appendChild(element)
+</script>
+
+</html>
