@@ -25,7 +25,7 @@
     <div>
         <ul id="images">
             <li>
-                <img width="200px" id="photoshop"
+                <img width="200px" id="photoshop" class="hidden"
                     src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
                     alt="photoshop">
             </li>
@@ -115,9 +115,12 @@
         item.addEventListener('click',(event)=>{
             // console.log(this);
             // this.style.visibility="hidden";
-            event.target.classList.toggle('hidden');
+            event.target.parentElement.classList.toggle('hidden');
         });
     });
+    function clickMe() {
+        console.log("Clicked on hidden elements");
+    }
 </script>
 
 </html>
