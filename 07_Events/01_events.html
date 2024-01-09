@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>htnml Events </title>
+    <style>
+        ul {
+            border: 1px solid #d0d4e4;
+            padding-block: 0.5rem;
+        }
+
+        li {
+            cursor: pointer;
+        }
+        .hidden{
+            visibility: hidden;
+        }
+    </style>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div>
+        <ul id="images">
+            <li>
+                <img width="200px" id="photoshop"
+                    src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="photoshop">
+            </li>
+            <li>
+                <img width="200px" id="japan"
+                    src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="">
+            </li>
+            <li>
+                <img width="200px" id="river"
+                    src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="">
+            </li>
+            <li>
+                <img width="200px" id="owl"
+                    src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="">
+            </li>
+            <li>
+                <img width="200px" id="prayer"
+                    src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="">
+            </li>
+            <li>
+                <a style="color: aliceblue;" href="https://google.com" id="google" target="_blank">Google</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    // Query selectorall returns nodelist
+    let imageLi = document.querySelectorAll('#images li img');
+    console.log(imageLi);
+    // This event listner is on each li
+    // imageLi.forEach((item) => {
+    // onclick is the best solution
+    // If we use evenet listner then we can get lots of information
+    // item.onclick=(e)=>{
+    //     console.log("This is items",item);
+    //     console.log(e.srcElement.id);
+    // }
+
+    // Need to focus
+    // Some important properties and method of events
+    // type,timestamp,defaultPrevented
+    // target,toElement,srcElement,currentTarget
+    // clientX,clientY,screenX,screenY
+    // altkey,ctrlkey,shiftkey,keycode
+    //     item.addEventListener('click', (evenet) => {
+    //         event.stopPropagation();
+    //         console.log(evenet.srcElement.id);
+    //     }, true);
+    // });
+
+    // This is the event listner on overall ul
+    // We will learn the bulling and capturing of the event
+    // preventDefault and stopPropagation
+
+    // There are one third parameter in addEventListener
+    // That we need to pass true or false
+    // By default it is false but if we want to make it true thats means
+    // false => event propagation type bubble it means if we have two div one div inside one div
+    // If we attached event listner on both element then first event(inner) will trigger then the outer function
+    // But If we want to chnage the sequence then we have to pass the third argument true
+    // This is top to bottom approach
+    // By default it is bottom to top approach
+    // And also one thing if we stop the progation means moving the fuction call at any stage then we can call
+    // stopPropagation() method
+
+    // preventDefault is also there to stop the default behaviour of any element
+    // let ulFun = document.getElementById('images');
+    // console.log(ulFun);
+    // ulFun.addEventListener('click', (event) => {
+    //     console.log("Clicked on the ul");
+    // }, false);
+
+    // let google = document.getElementById('google');
+    // google.addEventListener('click',(evenet)=>{
+    //     console.log("Clicked on google");
+    //     evenet.preventDefault();
+    //     evenet.stopPropagation();
+    // });
+
+
+    // Question answer 
+    imageLi.forEach((item)=>{
+        item.addEventListener('click',(event)=>{
+            // console.log(this);
+            // this.style.visibility="hidden";
+            event.target.classList.toggle('hidden');
+        });
+    });
+</script>
+
+</html>
