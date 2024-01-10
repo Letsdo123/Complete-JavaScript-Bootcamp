@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async In Js | Chai Aur Code</title>
+</head>
+<body>
+    <h2>Async In JS</h2>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const chnageText = function(text){
+        let h2=document.querySelector('h2');
+        h2.replaceChildren(document.createTextNode(text));
+    }
+    // let callChangeText=setTimeout(()=>{
+    //     chnageText("I have getting some confidence");
+    // },3000);
+    
+    // We can pass the third parameter as the parameter of the handler means the function
+    // that we are calling
+    let callChangeText=setTimeout(chnageText,3000,"I have getting some confidence");
+
+    // handling the clearTimeput with button click
+    let stopBtn=document.getElementById('stop');
+    stopBtn.addEventListener('click',()=>{
+        clearTimeout(callChangeText);
+        console.log("The text won't change now");
+    });
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async In Js | Chai Aur Code</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .random-bg-container{
+            width: 100vw;
+            height: 100vh;
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="random-bg-container">
+        <h2>Click on start to get random background color</h2>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+</body>
+<script>
+    let count = 0;
+    const chnageText = function () {
+        count++;
+        let h2 = document.querySelector('h2');
+        h2.replaceChildren(document.createTextNode(count));
+    }
+    const changeBg = function(){
+        const hexcode = "0123456789ABCDEF";
+        const charactersLength = hexcode.length;
+        let generateHexCode = '#';
+        let i=6;
+        while (i) {
+            generateHexCode += hexcode.charAt(Math.floor(Math.random() * charactersLength));
+            i--;
+        }
+        document.getElementsByClassName('random-bg-container')[0].style.backgroundColor=generateHexCode;
+        console.log(generateHexCode);
+    }
+    // handling the clearTimeput with button click
+    let callChangeText = undefined;
+    let startBtn = document.getElementById('start');
+    let stopBtn = document.getElementById('stop');
+    startBtn.addEventListener('click', () => {
+        console.log("Text changing start");
+        callChangeText = setInterval(changeBg, 1000);
+    });
+    stopBtn.addEventListener('click', () => {
+        clearTimeout(callChangeText);
+        console.log("The text won't change now");
+    });
+</script>
+
+</html>

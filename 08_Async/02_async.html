@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async In Js | Chai Aur Code</title>
+</head>
+<body>
+    <h2>Click on start button to start the count</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    let count = 0;
+    const chnageText = function(text){
+        count++;
+        let h2=document.querySelector('h2');
+        h2.replaceChildren(document.createTextNode(count));
+    }
+    // let callChangeText=setTimeout(()=>{
+    //     chnageText("I have getting some confidence");
+    // },3000);
+    
+    // We can pass the third parameter as the parameter of the handler means the function
+    // that we are calling
+
+    // handling the clearTimeput with button click
+    let callChangeText = undefined;
+    let startBtn=document.getElementById('start');
+    let stopBtn=document.getElementById('stop');
+    startBtn.addEventListener('click',()=>{
+        console.log("Text changing start");
+        callChangeText=setInterval(chnageText,1000,`Text value : ${Date.now()}`);
+    });
+    stopBtn.addEventListener('click',()=>{
+        clearTimeout(callChangeText);
+        console.log("The text won't change now");
+    });
+</script>
+</html>
