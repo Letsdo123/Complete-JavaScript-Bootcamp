@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API request and V8 engine</title>
+</head>
+<body style="background-color: #212121;color: white;">
+   <!--
+    0 -- UNSET Client has been created. open() not called yet
+    1 -- OPENED open() has been called.
+    2 -- HEADERS_RECIEVED send() has been called, and headers and status are avaialable.
+    3 -- LOADING Downloading reponseText holds partial data.
+    4 -- DONE The operation is complete
+   -->   
+   <h3>API request and V8 engine</h3>
+</body>
+<script>
+    function makeCard({email,gender,dob}) {
+        console.log(`Email of the user : ${email}`);
+        console.log(`Gender of the user : ${gender}`);
+        console.log(`DOB of the user : ${dob.age}`);
+    }
+    const apiReource = 'https://randomuser.me/api/'
+    const xhr = new XMLHttpRequest();
+    // Request has been called(created)
+    xhr.open('GET',apiReource);
+    // This notify on every state change
+    // We can pperform according to the state
+    xhr.onreadystatechange = function(){
+        // console.log(xhr.readyState);
+        // console.log(this.responseText);
+        if (xhr.readyState == 4) {
+            // JSON.parse is a mathod to convert string to json
+            const data = JSON.parse(this.responseText);
+            console.log(typeof data);
+            console.log(data.results[0]);
+            makeCard(data.results[0]);
+        }
+    }
+    // Here we sending the request beasically here we are actually send the request
+    xhr.send();
+</script>
+</html>
