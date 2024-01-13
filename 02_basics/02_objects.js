@@ -72,5 +72,5 @@ console.log(updatedUser);
 console.log(Object.keys(userDetails));
 console.log(Object.values(userDetails));
 console.log(Object.entries(userDetails));
-// This retirns true or false if the key present true otherwise false
+// This returns true or false if the key present true otherwise false
 console.log(userDetails.hasOwnProperty('fullname'));
