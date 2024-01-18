@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    *,
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .guess-number-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .guess-number-sub-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 2px solid rgb(74, 240, 74);
+        border-radius: 0.8rem;
+        background-color: #f8f1f1;
+        padding: 1.5rem;
+    }
+
+    .btn.custom-submit-btn {
+        background-color: rgb(8, 138, 8);
+        color: white;
+    }
+
+    .guess-footer p {
+        font-weight: 500;
+    }
+</style>
+
+<body>
+    <div class="guess-number-container">
+        <div class="guess-number-sub-container">
+            <div class="header">
+                <h4 class="text-center text-dark">Number guessing game</h4>
+                <div class="description">
+                    Try and guess a random number between 1 and 100.
+                    You have 10 attempts to guess the right number.
+                </div>
+            </div>
+            <div class="guess-body my-3">
+                <form class="guess-number-form">
+                    <div class="mb-3">
+                        <label for="guessNumber" class="form-label">Guess the number</label>
+                        <input type="number" class="form-control" id="guessNumber" placeholder="1 to 100">
+                    </div>
+                    <button id="submitBtn" class="btn custom-submit-btn">Submit Guess</button>
+                </form>
+            </div>
+            <div class="guess-footer d-flex flex-column gap-2">
+                <p>Previous Guessess : <span id="previousGuess">undefined</span></p>
+                <p>Guess remaining : <span id="guessRemaining">10</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    let submitBtn = document.getElementById('submitBtn');
+    let guessValue = document.getElementById('guessNumber');
+    let prevNumber = document.getElementById('previousGuess');
+    let guessRemaining = document.getElementById('guessRemaining');
+
+    let randomNumber = Math.round(Math.random() * 100);
+    let userGuess = 10;
+    let previousGuess = undefined;
+    let userCurrentValue = undefined;
+    function showErrorMessage(text) {
+        Swal.fire({
+            title: 'Error!',
+            text: text,
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        })
+    }
+    submitBtn.addEventListener('click', function (e) {
+        // This is for stopping the submit button to do its own work
+        // In normal case when er erite anything inside form and we click on a button then it take the submit
+        // and the page is refereshed and if we don;t want to do this then we can use preventDefault()
+        // It comes out from its normal workflow
+        e.preventDefault();
+        prevNumber.innerHTML = previousGuess
+        console.log(userGuess);
+        console.log(randomNumber);
+        let tempVal = guessValue.value;
+        if (tempVal > 100 || tempVal <= 0) {
+            showErrorMessage('Please chosse number from 1 to 100')
+            userGuess.value = ""
+        }
+        else if (tempVal == "") {
+            showErrorMessage('Please give an input')
+        }
+        else if (tempVal == randomNumber) {
+            console.log("Your are correct");
+        }
+        else if (userGuess <= 1) {
+            // guessRemaining--;
+            console.log("You are unable to guess");
+            if(userGuess<=1)
+                guessRemaining.innerHTML = --userGuess;
+        }
+        else {
+            guessRemaining.innerHTML = --userGuess;
+            userCurrentValue = tempVal;
+            previousGuess = userCurrentValue;
+        }
+        console.log('click on submit button');
+    })
+
+
+</script>
+
+</html>
